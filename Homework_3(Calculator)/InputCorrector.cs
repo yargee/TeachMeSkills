@@ -9,6 +9,7 @@ namespace Calculator
         public void GetExpression()
         {
             _expression = Console.ReadLine().ToList();
+
             if(_expression.Count == 0 )
             {
                 return;
@@ -33,7 +34,7 @@ namespace Calculator
 
             if (_expression.Count < 3)
             {
-                Console.WriteLine("Ну и что ты ввел, умник?");
+                Menu.WtfInput();
                 return;
             }
 
