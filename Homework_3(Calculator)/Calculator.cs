@@ -17,15 +17,16 @@
             {
                 _operations.Add(c);
             }
-
-
-            Console.WriteLine(numbers.Count + "/" + operations.Count);
         }
 
         public void Calculate()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             CalculatePriorityOperations();
             CalculateOtherOperations();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(Decimal.Round(_numbers[0], 5));
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void CalculatePriorityOperations()
