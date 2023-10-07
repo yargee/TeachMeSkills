@@ -29,7 +29,14 @@ namespace Calculator
                     _expression.Remove(_expression[i]);
                     i--;
                     correction = true;
-                }                
+                }
+
+                if (SymbolIdentifier.IsOperationSymbol(_expression[i]) && SymbolIdentifier.IsOperationSymbol(_expression[i+1]))
+                {
+                    _expression.Remove(_expression[i+1]);
+                    i--;
+                    correction = true;
+                }
             }
 
             if (_expression.Count < 3)
