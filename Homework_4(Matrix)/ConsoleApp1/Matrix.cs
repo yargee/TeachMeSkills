@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Matrix
 {
     internal class Matrix
     {
@@ -34,7 +34,7 @@ namespace ConsoleApp1
             {
                 var i = 0;
 
-                for (int c = 0; c < columns; ++c)
+                for (int c = 0; c < columns; c++)
                 {
                     for (int r = 0; r < rows; r++)
                     {

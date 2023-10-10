@@ -1,8 +1,8 @@
-﻿using ConsoleApp1;
+﻿using Matrix;
 
 while(true)
 {
-    Menu.MatrixImput(out Matrix matrix);
+    Menu.MatrixImput(out Matrix.Matrix matrix);
     matrix.Print();
 }
 
