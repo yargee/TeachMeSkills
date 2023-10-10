@@ -20,5 +20,10 @@
                 return true;
             }
         }
+
+        public static void CrutchError()
+        {
+            Console.WriteLine("от 1 до 5!!!");
+        }
     }
 }

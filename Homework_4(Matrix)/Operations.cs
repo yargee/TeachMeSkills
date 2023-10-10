@@ -32,13 +32,23 @@
             SortColumns(false);
         }
 
+        public void Inversion()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Я не понял этот пункт задания. " +
+                            "\nЕсли нужно просто инвертировать элементы, то почему построчно и что под этим подразумевается? Умножить на -1? :)" +
+                            "\nЕсли же нужно построить обратную матрицу, то опять же, почему построчно?");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public Operation SelectOperation(int index) => index switch
         {
             1 => ShowPositive,
             2 => ShowNegative,
             3 => SortColumnsAscending,
             4 => SortColumnsDecreasing,
-            5 => ShowPositive,
+            5 => Inversion,
+            _ => InputHandler.CrutchError
         };
 
         public void Print()
