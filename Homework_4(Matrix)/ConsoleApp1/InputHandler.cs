@@ -11,7 +11,6 @@
             if (!int.TryParse(input, out int value))
             {
                 Console.WriteLine("Введи нормально, у меня не парсится в инт");
-
                 intValue = default;
                 return false;
             }
@@ -20,8 +19,6 @@
                 intValue = value;
                 return true;
             }
-
-            Console.WriteLine();
         }
     }
 }
