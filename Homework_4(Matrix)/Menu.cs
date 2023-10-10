@@ -38,7 +38,7 @@
             }
         }
 
-        public static Operations.Operation SelectMatrixOperations(Matrix matrix)
+        public static int SelectMatrixOperations(Matrix matrix)
         {
             var index = 0;
 
@@ -51,10 +51,8 @@
             Console.WriteLine();
             while (!InputHandler.CorrectInput(ref index));
             Console.WriteLine();
-            var operations = new Operations(matrix);
-            var operation = operations.SelectOperation(index);
 
-            return operation;
+            return index;
         }
     }
 }

@@ -1,10 +1,14 @@
 ﻿using Matrix;
+using System;
 
 Menu.MatrixImput(out Matrix.Matrix matrix);
-matrix.Print();
+var operations = new Operations(matrix);
+operations.Print();
+
 while (true)
 {
-    var operation = Menu.SelectMatrixOperations(matrix);
+    var index = Menu.SelectMatrixOperations(matrix);
+    var operation = operations.SelectOperation(index);
     operation();
 }
 

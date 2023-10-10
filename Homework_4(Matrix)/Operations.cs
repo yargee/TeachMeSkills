@@ -14,25 +14,23 @@
 
         private void ShowNegative()
         {
-            _matrix.PrintColored(IsNegative);
+            PrintColored(IsNegative);
         }
 
         private void ShowPositive()
         {
-            _matrix.PrintColored(IsPositive);
+            PrintColored(IsPositive);
         }
 
         public void SortColumnsAscending()
         {
-            _matrix.SortColumns();
+            SortColumns();
         }
 
         public void SortColumnsDecreasing()
         {
-            _matrix.SortColumns(false);
+            SortColumns(false);
         }
-
-
 
         public Operation SelectOperation(int index) => index switch
         {
@@ -42,6 +40,87 @@
             4 => SortColumnsDecreasing,
             5 => ShowPositive,
         };
+
+        public void Print()
+        {
+            for (int i = 0; i < _matrix.MatrixValues.GetLength(0); i++)
+            {
+                for (int j = 0; j < _matrix.MatrixValues.GetLength(1); j++)
+                {
+                    Console.Write(_matrix.MatrixValues[i, j] + "\t");
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+        }
+
+        public void PrintColored(ZeroComparison func)
+        {
+            for (int i = 0; i < _matrix.MatrixValues.GetLength(0); i++)
+            {
+                for (int j = 0; j < _matrix.MatrixValues.GetLength(1); j++)
+                {
+                    if (func(_matrix.MatrixValues[i, j]))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(_matrix.MatrixValues[i, j] + "\t");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.Write(_matrix.MatrixValues[i, j] + "\t");
+                    }
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+        }
+
+        public void SortColumns(bool ascending = true)
+        {
+            if (ascending)
+            {
+                for (int i = 0; i < _matrix.MatrixValues.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _matrix.MatrixValues.GetLength(1); j++)
+                    {
+                        for (int k = 0; k < _matrix.MatrixValues.GetLength(1) - 1; k++)
+                        {
+                            if (_matrix.MatrixValues[j, k] > _matrix.MatrixValues[j, k + 1])
+                            {
+                                var temp = _matrix.MatrixValues[j, k];
+                                _matrix.MatrixValues[j, k] = _matrix.MatrixValues[j, k + 1];
+                                _matrix.MatrixValues[j, k + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _matrix.MatrixValues.GetLength(0); i++)
+                {
+                    for (int j = 0; j < _matrix.MatrixValues.GetLength(1); j++)
+                    {
+                        for (int k = 0; k < _matrix.MatrixValues.GetLength(1) - 1; k++)
+                        {
+                            if (_matrix.MatrixValues[j, k] <= _matrix.MatrixValues[j, k + 1])
+                            {
+                                var temp = _matrix.MatrixValues[j, k];
+                                _matrix.MatrixValues[j, k] = _matrix.MatrixValues[j, k + 1];
+                                _matrix.MatrixValues[j, k + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Print();
+        }
 
         public delegate bool ZeroComparison(int value);
         public delegate void Operation();
