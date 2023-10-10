@@ -4,7 +4,9 @@
     {
         public static bool CorrectInput(ref int intValue)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             var input = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
 
             if (!int.TryParse(input, out int value))
             {
@@ -18,6 +20,8 @@
                 intValue = value;
                 return true;
             }
+
+            Console.WriteLine();
         }
     }
 }

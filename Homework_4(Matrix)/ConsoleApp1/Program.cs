@@ -1,8 +1,11 @@
 ﻿using Matrix;
 
-while(true)
+Menu.MatrixImput(out Matrix.Matrix matrix);
+matrix.Print();
+while (true)
 {
-    Menu.MatrixImput(out Matrix.Matrix matrix);
-    matrix.Print();
+    var operation = Menu.SelectMatrixOperations(matrix);
+    operation();
 }
+
 

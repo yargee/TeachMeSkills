@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Matrix
+﻿namespace Matrix
 {
     internal class Menu
     {
         public static void MatrixImput(out Matrix matrix)
         {
-            int rows = 0;
-            int columns = 0;
-            int value = 0;
-            string? input;
+            var rows = 0;
+            var columns = 0;
+            var value = 0;
 
             Console.WriteLine("Введи размерность матрицы." +
                             "\nСтроки:");
@@ -43,6 +36,25 @@ namespace Matrix
 
                 matrix = new Matrix(columns, rows, values);
             }
+        }
+
+        public static Operations.Operation SelectMatrixOperations(Matrix matrix)
+        {
+            var index = 0;
+
+            Console.WriteLine("Введи номер операции." +
+                "\n1. Показать положительные числа" +
+                "\n2. Показать отрицательные числа" +
+                "\n3. Построчная сортировка по возрастанию" +
+                "\n4. Построчная сортировка по убыванию" +
+                "\n5. Построчная инверсия элементов");
+            Console.WriteLine();
+            while (!InputHandler.CorrectInput(ref index));
+            Console.WriteLine();
+            var operations = new Operations(matrix);
+            var operation = operations.SelectOperation(index);
+
+            return operation;
         }
     }
 }

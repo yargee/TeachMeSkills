@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static Matrix.Operations;
 
 namespace Matrix
 {
@@ -11,6 +7,8 @@ namespace Matrix
         private int _columns;
         private int _rows;
         private int[,] _matrix;
+
+        public int[,] MatrixValues => _matrix;
 
         public Matrix(int columns, int rows, List<int> manualImputValues = null)
         {
@@ -58,6 +56,74 @@ namespace Matrix
 
                 Console.WriteLine();
             }
+
+            Console.WriteLine();
+        }
+
+        public void PrintColored(ZeroComparison func)
+        {
+            for (int i = 0; i < _columns; i++)
+            {
+                for (int j = 0; j < _rows; j++)
+                {
+                    if (func(_matrix[i, j]))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(_matrix[i, j] + "\t");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.Write(_matrix[i, j] + "\t");
+                    }
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+        }
+
+        public void SortColumns(bool ascending = true)
+        {
+            if(ascending)
+            {
+                for (int i = 0; i < _columns; i++)
+                {
+                    for (int j = 0; j < _rows; j++)
+                    {
+                        for(int k = 0; k < _rows - 1; k ++)
+                        {
+                            if (_matrix[j,k] > _matrix[j,k+1])
+                            {
+                                var temp = _matrix[j, k];
+                                _matrix[j, k] = _matrix[j, k+1];
+                                _matrix[j, k + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < _columns; i++)
+                {
+                    for (int j = 0; j < _rows; j++)
+                    {
+                        for (int k = 0; k < _rows - 1; k++)
+                        {
+                            if (_matrix[j, k] <= _matrix[j, k + 1])
+                            {
+                                var temp = _matrix[j, k];
+                                _matrix[j, k] = _matrix[j, k + 1];
+                                _matrix[j, k + 1] = temp;
+                            }
+                        }
+                    }
+                }
+            }
+
+            Print();
         }
     }
 }
