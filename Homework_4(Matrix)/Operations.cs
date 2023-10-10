@@ -41,7 +41,7 @@
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public Operation SelectOperation(int index) => index switch
+        public Operation StartOperation(int index) => index switch
         {
             1 => ShowPositive,
             2 => ShowNegative,

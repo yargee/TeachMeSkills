@@ -7,9 +7,8 @@ operations.Print();
 
 while (true)
 {
-    var index = Menu.SelectMatrixOperations(matrix);
-    var operation = operations.SelectOperation(index);
-    operation();
+    var index = Menu.SelectOperation();
+    operations.StartOperation(index)();
 }
 
 

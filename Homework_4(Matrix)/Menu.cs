@@ -38,7 +38,7 @@
             }
         }
 
-        public static int SelectMatrixOperations(Matrix matrix)
+        public static int SelectOperation()
         {
             var index = 0;
 
