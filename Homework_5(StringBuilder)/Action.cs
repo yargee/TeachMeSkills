@@ -22,7 +22,7 @@ namespace JokesParser
             '6' => "ШЕСТЬ",
             '7' => "СЕМЬ",
             '8' => "ВОСЕМЬ",
-            _ => "ДЕВЯТЬ"            
+             _ => "ДЕВЯТЬ"            
         };
 
         public StringAction SelectAction(int index) => index switch
@@ -114,12 +114,23 @@ namespace JokesParser
 
         public void SameLetters()
         {
+            var joke = Joke.Value;
+            var same = new Regex(@"\b([A-zА-яЁё])[A-zА-яЁё]+?\1\b");
+            var matches = same.Matches(joke);
+            var sb = new StringBuilder();
 
+            foreach (Match match in matches)
+            {
+                sb.Append(match.Value + " ");
+            }
+
+            var result = sb.ToString();
+            Menu.ShowColoredResult("Слова начинающиеся и заканчивающиеся на одну букву. ", result);
         }
 
         public void IncorrectInput()
         {
-
+            Console.WriteLine("Неверный ввод");
         }
     }
 
