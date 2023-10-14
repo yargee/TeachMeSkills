@@ -5,8 +5,10 @@
         public static void View(IReadOnlyList<string> jokes)
         {
             var rnd = new Random(); 
-
-            Console.WriteLine("\n" + jokes[rnd.Next(0, jokes.Count)] + "\n");
+            Joke.SetValue(jokes[rnd.Next(0, jokes.Count)]);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n" + Joke.Value + "\n");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

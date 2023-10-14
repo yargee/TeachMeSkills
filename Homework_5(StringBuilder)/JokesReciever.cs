@@ -10,10 +10,10 @@
             {
                 using HttpResponseMessage response = await _client.GetAsync("https://www.anekdot.ru/random/anekdot/");
                 response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
+                string htmlResult = await response.Content.ReadAsStringAsync();
 
-                var result = Parser.RemoveExcessSymbols(responseBody);
-
+                var result = Parser.RemoveExcessSymbols(htmlResult);
+                                
                 JokesViewer.View(result);
             }
             catch (HttpRequestException e)

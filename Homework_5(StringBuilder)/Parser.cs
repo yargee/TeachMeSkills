@@ -12,7 +12,7 @@ namespace JokesParser
             var tagPattern = "<.*?>";
             var result = new List<string>();
 
-            MatchCollection matches = Regex.Matches(s, jokePattern);
+            var matches = Regex.Matches(s, jokePattern);
 
             foreach ( Match match in matches )
             {

@@ -5,6 +5,8 @@
         static async Task Main()
         {
             await JokesReciever.Recieve();
+
+            Menu.Start();
         }
     }
 }
