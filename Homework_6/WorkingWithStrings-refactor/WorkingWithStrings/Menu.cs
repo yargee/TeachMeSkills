@@ -7,7 +7,8 @@ internal class Menu
 {
     public void Start(ref StringAnalyzer sa)
     {
-        var provider = new FileOutputProvider("d:/1.txt");
+        var outputInitializer = new OutputInitializer();
+        var provider = outputInitializer.InitOutput();
 
         var commands = new List<ICommand>
         {
