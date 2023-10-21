@@ -1,8 +1,19 @@
-﻿using ProductInventoryProject.Shop;
+﻿using ProductInventoryProject.Customer;
+using ProductInventoryProject.Shop;
+using ProductInventoryProject.Shop.Products;
 
 var shop = new Shop();
+
 shop.InitShop();
-shop.ShowProducts();
-var product = shop.GetProductById();
-var provider = new PurchaseProvider();
-provider.MakePurchase(product, 10);
+
+while (true)
+{
+    shop.ShowProducts();
+    shop.SelectProduct(out Product product, out int quantity);
+
+    var provider = new PurchaseProvider();
+    provider.MakePurchase(product, quantity);
+
+    var cart = new Cart();
+    cart.ShowProducts();
+}

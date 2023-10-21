@@ -12,12 +12,12 @@ namespace ProductInventoryProject.Shop
             if(customerWallet.TrySpend(product.Price * quantity))
             {
                 var cashbox = new Cashbox();
-                cashbox.Add(product.Price);
+                cashbox.Add(product.Price *quantity);
 
-                product.DecreaseQuantity(quantity);
+                var purchasedProduct = product.Split(quantity);
 
                 var cart = new Cart();
-                cart.Add(new )
+                cart.Add(purchasedProduct);
             }
         }
     }

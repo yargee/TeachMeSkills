@@ -4,7 +4,7 @@ namespace ProductInventoryProject.Shop
 {
     internal class Shop
     {
-        private static List<Product> _products = new List<Product>();
+        private List<Product> _products = new List<Product>();
 
         public void InitShop()
         {
@@ -22,15 +22,33 @@ namespace ProductInventoryProject.Shop
             _products.Add(new Potato(11, 15, 500, "Картофель для варки"));
         }
 
+        public void SelectProduct(out Product product, out int quantity)
+        {
+            Console.WriteLine("Введите код продукта.");
+            product = GetProduct();
+            Console.WriteLine("Введите количество.");
+            quantity = GetQuantity();
+            Console.WriteLine();
+        }
+
         public void ShowProducts()
         {
             foreach (var product in _products)
             {
-                Console.WriteLine($"{product.Description} цена: {product.Price}. Для покупки введите {product.Id}.");
+                Console.Write($"{product.Description} цена: {product.Price}. В наличии ");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(product.Quantity);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(" Для покупки введите ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(product.Id);
+                Console.ForegroundColor = ConsoleColor.White;
             }
+
+            Console.WriteLine();
         }
 
-        public Product GetProductById()
+        private Product GetProduct()
         {
             var input = Console.ReadLine();
 
@@ -42,5 +60,17 @@ namespace ProductInventoryProject.Shop
 
             return null;
         } 
+
+        private int GetQuantity()
+        {
+            var input = Console.ReadLine();
+
+            if (int.TryParse(input, out int quantity))
+            {                
+                return quantity;
+            }
+
+            return default;
+        }       
     }
 }

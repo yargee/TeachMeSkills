@@ -36,5 +36,7 @@
 
             Quantity += value;
         }
+
+        public abstract Product Split(int quantity);
     }
 }
