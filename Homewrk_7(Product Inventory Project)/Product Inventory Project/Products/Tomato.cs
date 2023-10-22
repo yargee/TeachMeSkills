@@ -1,4 +1,4 @@
-﻿namespace ProductInventoryProject.Shop.Products
+﻿namespace ProductInventoryProject.Products
 {
     internal class Tomato : Product
     {

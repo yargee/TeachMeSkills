@@ -1,4 +1,4 @@
-﻿namespace ProductInventoryProject.Shop.Products
+﻿namespace ProductInventoryProject.Products
 {
     internal abstract class Product
     {
@@ -17,24 +17,10 @@
 
         public void DecreaseQuantity(int value)
         {
-            if (value < 0)
+            if (value <= Quantity)
             {
-                Console.WriteLine("Ввод некорректен.");
-                return;
+                Quantity -= value;
             }
-
-            Quantity -= value;
-        }
-
-        public void IncreaseQuantity(int value)
-        {
-            if (value < 0)
-            {
-                Console.WriteLine("Ввод некорректен.");
-                return;
-            }
-
-            Quantity += value;
         }
 
         public abstract Product Split(int quantity);
