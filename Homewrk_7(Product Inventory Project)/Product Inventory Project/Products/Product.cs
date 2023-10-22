@@ -23,6 +23,11 @@
             }
         }
 
+        public void IncreaseQuantity(int value)
+        {
+            Quantity+= value;
+        }
+
         public abstract Product Split(int quantity);
     }
 }

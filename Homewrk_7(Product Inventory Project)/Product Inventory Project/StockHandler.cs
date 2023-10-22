@@ -9,9 +9,7 @@ namespace ProductInventoryProject
             var takenProduct = product.Split(quantity);
 
             var inventory = new Inventory();
-            inventory.Init();
             inventory.Add(takenProduct);
-
         }
     }
 }
