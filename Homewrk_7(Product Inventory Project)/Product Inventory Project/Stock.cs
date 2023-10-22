@@ -6,7 +6,7 @@ namespace ProductInventoryProject
     {
         private List<Product> _products = new List<Product>();
 
-        public void InitShop()
+        public void InitStock()
         {
             _products.Add(new Apple(0, 10, 500, "Яблоко зеленое"));
             _products.Add(new Cucumber(1, 15, 500, "Огурец сладкопопый"));

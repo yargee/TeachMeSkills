@@ -1,13 +1,11 @@
 ﻿using ProductInventoryProject;
-using Microsoft.Extensions.Configuration;
 using ProductInventoryProject.Products;
-
 
 var outputHandler = new OutputHandler();
 outputHandler.Initialize();
 
 var stock = new Stock();
-stock.InitShop();
+stock.InitStock();
 
 while (true)
 {
