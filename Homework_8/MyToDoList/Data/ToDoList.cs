@@ -1,36 +1,63 @@
-﻿namespace MyToDoList.Data;
+﻿using MyToDoList.Output;
+
+namespace MyToDoList.Data;
 
 public class ToDoList : IToDoList
 {
-    private readonly List<string> _todoTasks = new List<string>();
-    private readonly List<string> _doneTasks = new List<string>();
+    private readonly List<IObjective> _toDoObjectives = new List<IObjective>();
+    private readonly List<IObjective> _doneObjectives = new List<IObjective>();
 
-    public int ToDoCount => _todoTasks.Count;
+    public int ToDoCount => _toDoObjectives.Count;
 
-    public void Add(string task)
+    public ToDoList()
     {
-        _todoTasks.Add(task);
+        var objectivesSerializer = new ObjectivesSerializer();
+        var objectives = objectivesSerializer.ReadObjectivesFromFile();
+
+        if (objectives == null)
+        {
+            return;
+        }
+        else
+        {
+            _toDoObjectives = (List<IObjective>)objectives.Where(x => x.Finished != default);
+            _doneObjectives = (List<IObjective>)objectives.Where(x => x.Finished == default);
+        }
+    }
+
+    public void Add(IObjective objective)
+    {
+        _toDoObjectives.Add(objective);
     }
 
     public void Delete(int id)
     {
-        _todoTasks.RemoveAt(id);
+        _toDoObjectives.RemoveAt(id);
     }
 
-    public void MarkAsCompleted(int id)
+    public void Finish(int id)
     {
-        var task = _todoTasks[id];
-        _todoTasks.RemoveAt(id);
-        _doneTasks.Add(task);
+        var objective = _toDoObjectives[id];
+        _toDoObjectives.RemoveAt(id);
+        _doneObjectives.Add(objective);
+        objective.Finish();
     }
 
-    public string[] ToDoItems()
+    public IReadOnlyList<IObjective> ToDoObjectives()
     {
-        return _todoTasks.ToArray();
+        return _toDoObjectives;
     }
 
-    public string[] DoneItems()
+    public IReadOnlyList<IObjective> DoneObjectives()
     {
-       return _doneTasks.ToArray();
+        return _doneObjectives;
+    }
+
+    public void Save()
+    {
+        var serializer = new ObjectivesSerializer();
+        serializer.Reset();
+        serializer.AddObjectivesToFile(_toDoObjectives);
+        serializer.AddObjectivesToFile(_doneObjectives);
     }
 }

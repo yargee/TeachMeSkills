@@ -2,13 +2,14 @@
 
 public interface IToDoList
 {
-    void Add(string task);
+    void Add(IObjective objective);
 
     void Delete(int id);
 
-    void MarkAsCompleted(int id);
+    void Finish(int id);
 
-    string[] ToDoItems();
+    void Save();
 
-    string[] DoneItems();
+    IReadOnlyList<IObjective> ToDoObjectives();
+    IReadOnlyList<IObjective> DoneObjectives();
 }

@@ -1,34 +1,31 @@
 ﻿using MyToDoList.Commands;
 using MyToDoList.Data;
+using MyToDoList.Output;
 
 namespace MyToDoList;
 internal class Menu
 {
-    public Menu()
-    {
-    }
-
-
-
     public void Start()
-    {
+    {        
         var todoList = new ToDoList();
+
+
         List<ICommand> commands = new()
         {
             new ExitCommand(),
             new AddCommand(todoList),
             new RemoveCommand(todoList),
-            new SetCompleteCommand(todoList)
+            new FinishCommand(todoList)
         };
 
         do
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Задачи к выполнению:");
-            PrintList(todoList.ToDoItems());
+            PrintList(new ToDoViewer(),  todoList.ToDoObjectives());
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Выполненные задачи:");            
-            PrintList(todoList.DoneItems());
+            PrintList(new DoneViewer(), todoList.DoneObjectives());
             Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i < commands.Count; i++)
             {
@@ -45,17 +42,14 @@ internal class Menu
             {
                 Console.WriteLine("Недопустимое значение");
             }
+
+            todoList.Save();
+
         } while (true);
     }
 
-    public static void PrintList(string[] list)
+    public static void PrintList(IObjectivesViewer viewer, IReadOnlyList<IObjective> list)
     {
-        for (int i = 0; i < list.Length; i++)
-        {
-            Console.Write(i + "->");
-            Console.WriteLine(list[i]);
-        }
-
-        Console.WriteLine();
+        viewer.Print(list);
     }
 }

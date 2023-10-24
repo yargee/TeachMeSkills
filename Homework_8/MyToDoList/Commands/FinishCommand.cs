@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace MyToDoList.Commands
 {
-    internal class SetCompleteCommand : ICommand
+    internal class FinishCommand : ICommand
     {
         private ToDoList _toDoList = new ToDoList();
 
-        public SetCompleteCommand(ToDoList toDoList)
+        public FinishCommand(ToDoList toDoList)
         {
             _toDoList = toDoList;
         }
@@ -33,7 +33,7 @@ namespace MyToDoList.Commands
                 {
                     if (index >= 0 && index < _toDoList.ToDoCount)
                     {
-                        _toDoList.MarkAsCompleted(index);
+                        _toDoList.Finish(index);
                         break;
                     }
                 }

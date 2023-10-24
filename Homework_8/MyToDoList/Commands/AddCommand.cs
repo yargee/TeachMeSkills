@@ -1,4 +1,6 @@
 ﻿using MyToDoList.Data;
+using MyToDoList.Output;
+using System.Runtime.InteropServices.JavaScript;
 
 namespace MyToDoList.Commands;
 
@@ -18,11 +20,14 @@ internal class AddCommand : ICommand
         do
         {
             Console.WriteLine("Введи описание задачи");
-            var task = Console.ReadLine();
+            var objective = Console.ReadLine();
+            Console.WriteLine("Введи дату выполнения задачи");
+            var date = Console.ReadLine();
 
-            if (task != null)
+            if (objective != null && DateTime.TryParse(date, out DateTime parsedDate))
             {
-                _toDoList.Add(task);
+                var newObjective = new Objective(objective, parsedDate);
+                _toDoList.Add(newObjective);
                 break;
             }
         } while (true);
