@@ -5,6 +5,8 @@ public class ToDoList : IToDoList
     private readonly List<string> _todoTasks = new List<string>();
     private readonly List<string> _doneTasks = new List<string>();
 
+    public int ToDoCount => _todoTasks.Count;
+
     public void Add(string task)
     {
         _todoTasks.Add(task);

@@ -17,15 +17,19 @@ internal class Menu
         {
             new ExitCommand(),
             new AddCommand(todoList),
+            new RemoveCommand(todoList),
+            new SetCompleteCommand(todoList)
         };
 
         do
         {
-            Console.WriteLine("Задачи:");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Задачи к выполнению:");
             PrintList(todoList.ToDoItems());
-            Console.WriteLine("Достижения:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Выполненные задачи:");            
             PrintList(todoList.DoneItems());
-
+            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i < commands.Count; i++)
             {
                 Console.Write(i + ") ");
@@ -51,5 +55,7 @@ internal class Menu
             Console.Write(i + "->");
             Console.WriteLine(list[i]);
         }
+
+        Console.WriteLine();
     }
 }
