@@ -34,6 +34,7 @@ namespace MyToDoList.Output
 
             foreach (var objective in lines)
             {
+                Console.WriteLine(objective);
                 var deserializedObjective = JsonSerializer.Deserialize<IObjective>(objective);
                 Console.WriteLine(deserializedObjective.Description);
 
