@@ -9,7 +9,7 @@ namespace MyToDoList.Commands
 {
     internal class FinishCommand : ICommand
     {
-        private ToDoList _toDoList = new ToDoList();
+        private ToDoList _toDoList;
 
         public FinishCommand(ToDoList toDoList)
         {

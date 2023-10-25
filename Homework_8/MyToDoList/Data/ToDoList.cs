@@ -2,10 +2,10 @@
 
 namespace MyToDoList.Data;
 
-public class ToDoList : IToDoList
+internal class ToDoList : IToDoList
 {
-    private readonly List<IObjective> _toDoObjectives = new List<IObjective>();
-    private readonly List<IObjective> _doneObjectives = new List<IObjective>();
+    private readonly List<Objective> _toDoObjectives = new List<Objective>();
+    private readonly List<Objective> _doneObjectives = new List<Objective>();
 
     public int ToDoCount => _toDoObjectives.Count;
 
@@ -20,12 +20,23 @@ public class ToDoList : IToDoList
         }
         else
         {
-            _toDoObjectives = (List<IObjective>)objectives.Where(x => x.Finished != default);
-            _doneObjectives = (List<IObjective>)objectives.Where(x => x.Finished == default);
+            foreach(var objective in objectives)
+            {
+                Console.WriteLine(objective.Description + " " + objective.Finished);
+
+                if (objective.Finished == string.Empty)
+                {                    
+                    _toDoObjectives.Add(objective);
+                }
+                else
+                {                    
+                    _doneObjectives.Add(objective);
+                }
+            }
         }
     }
 
-    public void Add(IObjective objective)
+    public void Add(Objective objective)
     {
         _toDoObjectives.Add(objective);
     }
@@ -43,12 +54,12 @@ public class ToDoList : IToDoList
         objective.Finish();
     }
 
-    public IReadOnlyList<IObjective> ToDoObjectives()
+    public IReadOnlyList<Objective> ToDoObjectives()
     {
         return _toDoObjectives;
     }
 
-    public IReadOnlyList<IObjective> DoneObjectives()
+    public IReadOnlyList<Objective> DoneObjectives()
     {
         return _doneObjectives;
     }
@@ -57,7 +68,18 @@ public class ToDoList : IToDoList
     {
         var serializer = new ObjectivesSerializer();
         serializer.Reset();
-        serializer.AddObjectivesToFile(_toDoObjectives);
-        serializer.AddObjectivesToFile(_doneObjectives);
+
+        var newList = new List<Objective>();
+
+        foreach(var objective in  _toDoObjectives)
+        {
+            newList.Add(objective);
+        }
+        foreach (var objective in _doneObjectives)
+        {
+            newList.Add(objective);
+        }
+
+        serializer.AddObjectivesToFile(newList);
     }
 }

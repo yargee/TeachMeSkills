@@ -1,45 +1,37 @@
 ﻿using MyToDoList.Data;
-using System.Text;
 using System.Text.Json;
 
 namespace MyToDoList.Output
 {
     internal class ObjectivesSerializer
     {
-        private readonly string _path = "..\\..\\..\\Objectives.txt";
+        private readonly string _path = "..\\..\\..\\Objectives.json";
 
         public void Reset()
         {
             File.WriteAllText(_path, string.Empty);
         }
 
-        public void AddObjectivesToFile(List<IObjective> objectives)
+        public void AddObjectivesToFile(List<Objective> objectives)
         {
-            var sb = new StringBuilder();
 
-            foreach (var objective in objectives)
-            {
-                string jsonString = JsonSerializer.Serialize(objective);
-                sb.Append("\n" + jsonString);
-            }
+            string jsonString = JsonSerializer.Serialize(objectives);
 
-            Console.WriteLine(sb.ToString());
-            File.AppendAllText(_path, sb.ToString());
+            File.WriteAllText(_path, jsonString);
         }
 
-        public IReadOnlyList<IObjective> ReadObjectivesFromFile()
+        public List<Objective> ReadObjectivesFromFile()
         {
-            var lines = File.ReadAllLines(_path);
-            var objectives = new List<IObjective>();
+            var jsonString = File.ReadAllText(_path);
 
-            foreach (var objective in lines)
+            if (string.IsNullOrEmpty(jsonString))
             {
-                Console.WriteLine(objective);
-                var deserializedObjective = JsonSerializer.Deserialize<IObjective>(objective);
-                Console.WriteLine(deserializedObjective.Description);
-
-                objectives.Add(deserializedObjective);
+                return null;
             }
+
+            var objectives = new List<Objective>();
+
+            objectives = JsonSerializer.Deserialize<List<Objective>>(jsonString);
 
             return objectives;
         }

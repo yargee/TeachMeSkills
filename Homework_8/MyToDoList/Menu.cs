@@ -9,7 +9,6 @@ internal class Menu
     {        
         var todoList = new ToDoList();
 
-
         List<ICommand> commands = new()
         {
             new ExitCommand(),
@@ -48,7 +47,7 @@ internal class Menu
         } while (true);
     }
 
-    public static void PrintList(IObjectivesViewer viewer, IReadOnlyList<IObjective> list)
+    public static void PrintList(IObjectivesViewer viewer, IReadOnlyList<Objective> list)
     {
         viewer.Print(list);
     }

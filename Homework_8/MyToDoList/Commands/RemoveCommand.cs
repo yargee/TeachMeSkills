@@ -4,7 +4,7 @@ namespace MyToDoList.Commands
 {
     internal class RemoveCommand : ICommand
     {
-        private ToDoList _toDoList = new ToDoList();
+        private ToDoList _toDoList;
 
         public string Description => "Удалить задачу.";
 

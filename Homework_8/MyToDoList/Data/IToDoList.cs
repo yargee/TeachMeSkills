@@ -1,8 +1,8 @@
 ﻿namespace MyToDoList.Data;
 
-public interface IToDoList
+internal interface IToDoList
 {
-    void Add(IObjective objective);
+    void Add(Objective objective);
 
     void Delete(int id);
 
@@ -10,6 +10,6 @@ public interface IToDoList
 
     void Save();
 
-    IReadOnlyList<IObjective> ToDoObjectives();
-    IReadOnlyList<IObjective> DoneObjectives();
+    IReadOnlyList<Objective> ToDoObjectives();
+    IReadOnlyList<Objective> DoneObjectives();
 }

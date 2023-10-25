@@ -1,6 +1,4 @@
 ﻿using MyToDoList.Data;
-using MyToDoList.Output;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace MyToDoList.Commands;
 
@@ -26,7 +24,7 @@ internal class AddCommand : ICommand
 
             if (objective != null && DateTime.TryParse(date, out DateTime parsedDate))
             {
-                var newObjective = new Objective(objective, parsedDate);
+                var newObjective = new Objective(objective, date);
                 _toDoList.Add(newObjective);
                 break;
             }
