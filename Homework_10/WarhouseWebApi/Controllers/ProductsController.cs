@@ -23,9 +23,15 @@ namespace WarhouseWebApi.Controllers
         }
 
         [HttpPost]
-        public ProductModel[] GetProducts()
+        public ProductsListModel GetProducts()
         {
             return _service.GetProducts();
+        }
+
+        [HttpPost]
+        public ProductsPriceSumModel GetProductsPriceSum(string key)
+        {
+            return _service.CalculatePrice(key);
         }
     }
 }

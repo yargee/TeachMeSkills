@@ -16,9 +16,14 @@ namespace WarhouseWebApi.Services
             _products.Remove(product);
         }
 
-        public ProductModel[] GetProducts()
+        public ProductsListModel GetProducts()
         {
-            return _products.ToArray();
+            return new ProductsListModel(_products.ToArray());
+        }
+
+        public ProductsPriceSumModel CalculatePrice(string name)
+        {
+            return new ProductsPriceSumModel(_products.Where(x => x.Name == name).Sum(x => x.Info.Price * x.Info.Quantity));
         }
     }
 }

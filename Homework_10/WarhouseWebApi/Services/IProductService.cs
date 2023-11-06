@@ -4,8 +4,9 @@ namespace WarhouseWebApi.Services
 {
     public interface IProductService
     {
-        ProductModel[] GetProducts();
+        ProductsListModel GetProducts();
         void AddProduct(ProductModel product);
         void RemoveProduct(ProductModel product);
+        ProductsPriceSumModel CalculatePrice(string name);
     }
 }
