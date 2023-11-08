@@ -20,9 +20,9 @@ namespace WarhouseView.Services
         {
             if(_products.Count == 0)
             {
-                _products.Add(new ProductModel("Test product1", new ProductInfo("Test decription1", 10, 100)));
-                _products.Add(new ProductModel("Test product2", new ProductInfo("Test decription2", 10, 100)));
-                _products.Add(new ProductModel("Test product3", new ProductInfo("Test decription3", 10, 100)));
+                _products.Add(new ProductModel(new Guid(), "Test product1", new ProductInfo("Test decription1", 10, 100)));
+                _products.Add(new ProductModel(new Guid(), "Test product2", new ProductInfo("Test decription2", 10, 100)));
+                _products.Add(new ProductModel(new Guid(), "Test product3", new ProductInfo("Test decription3", 10, 100)));
             }
 
             return new ProductsListModel(_products);

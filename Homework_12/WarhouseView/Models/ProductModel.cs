@@ -6,9 +6,9 @@
         public string Name { get; private set; } = string.Empty;
         public ProductInfo Info { get; private set; }
 
-        public ProductModel(string name, ProductInfo info)
+        public ProductModel(Guid id ,string name, ProductInfo info)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
             Info = info;
         }
