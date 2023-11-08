@@ -1,8 +1,21 @@
-﻿@{
+﻿@model ProductsListModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Товар на складе:</h1>
+    <p>
+        @{
+            for(int i = 0; i < Model.Products.Count; i++)
+            {
+                <div style="margin: 20px">
+                    <div>
+                        <h1>Товар @i</h1>
+
+                    </div>                
+                </div>
+            }
+        }
+    </p>
 </div>
