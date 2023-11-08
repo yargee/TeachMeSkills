@@ -7,12 +7,58 @@
     <h1 class="display-4">Товар на складе:</h1>
     <p>
         @{
-            for(int i = 0; i < Model.Products.Count; i++)
+            @for (int i = 0; i < Model.Products.Count; i++)
             {
-                <div style="margin: 20px">
+                <div style="margin: 20px; display: inline-block;">
                     <div>
-                        <h1>Товар @i</h1>
-                    </div>                
+                        <h1>Товар @(i + 1)</h1>
+                        <p>
+                            @Model.Products[i].Name
+                        </p>
+                        <p>
+                            @Model.Products[i].Info.Description
+                        </p>
+                        <p>
+                            @Model.Products[i].Info.Price руб.
+                        </p>
+                        <p>
+                            @Model.Products[i].Info.Quantity шт.
+                        </p>
+                        @using (Html.BeginForm("RemoveProduct", "HOME", FormMethod.Post))
+                        {
+                            <input  type ="hidden" name="id" />
+
+                            <div>
+                                <input type="submit" value="Удалить" />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            }
+
+
+            using (Html.BeginForm("AddProduct", "HOME", FormMethod.Post))
+            {
+                <div>
+                    <label for="name">Название:</label>
+                    <input type="text" id="name" name="name" />
+                </div>
+                <div>
+                    <label for="description">Описание:</label>
+                    <input type="text" id="description" name="description" />
+                </div>
+                <div>
+                    <label for="quantity">Rj:</label>
+                    <input type="number" id="quantity" name="quantity" />
+                </div>
+                <div>
+                    <label for="price">Название:</label>
+                    <input type="number" id="price" name="price" />
+                </div>
+
+                <div>
+                    <input type="submit" value="Добавить" />
                 </div>
             }
         }

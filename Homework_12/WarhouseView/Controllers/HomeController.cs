@@ -32,10 +32,18 @@ namespace WarhouseView.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult AddProduct([FromBody] ProductModel product)
+        [HttpPost]
+        public IActionResult AddProduct([FromForm] string name, string description, int quantity, int price)
         {
-            _service.AddProduct(product);
-            return Ok();
+            _service.AddProduct(new ProductModel(new Guid(), name, new ProductInfo(description, quantity,price)));
+            return View("Index", _service.GetProducts());
+        }
+
+        [HttpPost]
+        public IActionResult RemoveProduct([FromForm] ProductModel product)
+        {
+            _service.RemoveProduct(product);
+            return View("Index", _service.GetProducts());
         }
 
         public ProductsPriceSumModel GetProductsPriceSum(string key)
