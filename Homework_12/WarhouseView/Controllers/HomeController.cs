@@ -21,11 +21,6 @@ namespace WarhouseView.Controllers
             return View("Index", _service.GetProducts());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -33,22 +28,23 @@ namespace WarhouseView.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct([FromForm] string name, string description, int quantity, int price)
+        public IActionResult AddProduct([FromForm] ProductConstructionModel model)
         {
-            _service.AddProduct(new ProductModel(new Guid(), name, new ProductInfo(description, quantity,price)));
+            //тут типа обработка ввода
+            _service.AddProduct(new ProductModel(Guid.NewGuid(), model.Name, new ProductInfo(model.Description, model.Quantity,model.Price)));
             return View("Index", _service.GetProducts());
         }
 
         [HttpPost]
-        public IActionResult RemoveProduct([FromForm] ProductModel product)
-        {
-            _service.RemoveProduct(product);
+        public IActionResult RemoveProduct([FromForm] ProductDeleteModel model)
+        {            
+            _service.RemoveProduct(model.Guid);
             return View("Index", _service.GetProducts());
         }
 
-        public ProductsPriceSumModel GetProductsPriceSum(string key)
+        public IActionResult GetProductsPriceSum([FromForm] ProductsPriceSumKeyModel model )
         {
-            return _service.CalculatePrice(key);
+            return View("Index", _service.CalculatePrice(model.Key));
         }
     }
 }

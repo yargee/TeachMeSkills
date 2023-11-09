@@ -11,26 +11,26 @@ namespace WarhouseView.Services
             _products.Add(product);
         }
 
-        public void RemoveProduct(ProductModel product)
+        public void RemoveProduct(Guid guid)
         {
-            _products.Remove(product);
+            _products.RemoveAll(x => x.Guid == guid);
         }
 
-        public ProductsListModel GetProducts()
+        public WarhouseFacadeModel GetProducts()
         {
             if(_products.Count == 0)
             {
-                _products.Add(new ProductModel(new Guid(), "Test product1", new ProductInfo("Test decription1", 10, 100)));
-                _products.Add(new ProductModel(new Guid(), "Test product2", new ProductInfo("Test decription2", 10, 100)));
-                _products.Add(new ProductModel(new Guid(), "Test product3", new ProductInfo("Test decription3", 10, 100)));
+                _products.Add(new ProductModel(Guid.NewGuid(), "Test product1", new ProductInfo("Test decription1", 10, 100)));
+                _products.Add(new ProductModel(Guid.NewGuid(), "Test product2", new ProductInfo("Test decription2", 10, 100)));
+                _products.Add(new ProductModel(Guid.NewGuid(), "Test product3", new ProductInfo("Test decription3", 10, 100)));
             }
 
-            return new ProductsListModel(_products);
+            return new WarhouseFacadeModel(_products);
         }
 
-        public ProductsPriceSumModel CalculatePrice(string name)
+        public WarhouseFacadeModel CalculatePrice(string name)
         {
-            return new ProductsPriceSumModel(_products.Where(x => x.Name == name).Sum(x => x.Info.Price * x.Info.Quantity));
+            return new WarhouseFacadeModel(_products, _products.Where(x => x.Name == name).Sum(x => x.Info.Price * x.Info.Quantity));
         }
     }
 }

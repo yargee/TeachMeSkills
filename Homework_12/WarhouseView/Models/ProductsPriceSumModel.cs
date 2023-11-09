@@ -2,7 +2,7 @@
 {
     public class ProductsPriceSumModel
     {
-        public int PriceSum { get; set; }
+        public int PriceSum { get;}
 
         public ProductsPriceSumModel(int priceSum)
         {

@@ -4,9 +4,9 @@ namespace WarhouseView.Services
 {
     public interface IProductService
     {
-        ProductsListModel GetProducts();
+        WarhouseFacadeModel GetProducts();
         void AddProduct(ProductModel product);
-        void RemoveProduct(ProductModel product);
-        ProductsPriceSumModel CalculatePrice(string name);
+        void RemoveProduct(Guid guid);
+        WarhouseFacadeModel CalculatePrice(string name);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model ProductsListModel
+﻿@model WarhouseFacadeModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -24,21 +24,17 @@
                         <p>
                             @Model.Products[i].Info.Quantity шт.
                         </p>
-                        @using (Html.BeginForm("RemoveProduct", "HOME", FormMethod.Post))
+                        @using (Html.BeginForm("RemoveProduct", "Home", FormMethod.Post))
                         {
-                            <input  type ="hidden" name="id" />
-
+                            <input type="hidden" name="guid" value="@Model.Products[i].Guid" />
                             <div>
                                 <input type="submit" value="Удалить" />
                             </div>
                         }
-
                     </div>
                 </div>
             }
-
-
-            using (Html.BeginForm("AddProduct", "HOME", FormMethod.Post))
+            @using (Html.BeginForm("AddProduct", "Home", FormMethod.Post))
             {
                 <div>
                     <label for="name">Название:</label>
@@ -49,16 +45,30 @@
                     <input type="text" id="description" name="description" />
                 </div>
                 <div>
-                    <label for="quantity">Rj:</label>
+                    <label for="quantity">Количество:</label>
                     <input type="number" id="quantity" name="quantity" />
                 </div>
                 <div>
-                    <label for="price">Название:</label>
+                    <label for="price">Цена:</label>
                     <input type="number" id="price" name="price" />
                 </div>
 
                 <div>
                     <input type="submit" value="Добавить" />
+                </div>
+            }
+
+            @using (Html.BeginForm("GetProductsPriceSum", "Home", FormMethod.Post))
+            {
+                <div>
+                    <label for="name">Введите название продукта:</label>
+                    <input type="text" id="key" name="key" />
+                </div>
+                <div>
+                    <input type="submit" value="Посчитать" />
+                </div>
+                <div>
+                    <label for="sum">@Model.TempotarySum:</label>
                 </div>
             }
         }

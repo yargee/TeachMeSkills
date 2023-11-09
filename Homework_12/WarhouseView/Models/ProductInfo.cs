@@ -2,9 +2,9 @@
 {
     public class ProductInfo
     {
-        public string Description { get; private set; } = string.Empty;
-        public int Quantity { get; private set; }
-        public int Price { get; private set; }
+        public string Description { get; }
+        public int Quantity { get; }
+        public int Price { get;}
 
         public ProductInfo(string description, int quantity, int price)
         {
