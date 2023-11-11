@@ -1,9 +1,8 @@
-﻿namespace WarhouseView.Middlewares
+﻿
+public interface IPurityPattern
 {
-    public interface IPurityPattern
-    {
-        public string RedirectUrl { get; set; }
-        public string Message { get; set; }
-        public bool MatchFound(string path);
-    }
+    string RedirectUrl { get; }
+    string Message { get; }
+    bool MatchFound(string path);
 }
+

@@ -1,9 +1,9 @@
 ﻿namespace WarhouseView.Exceptions
 {
     [Serializable]
-    public class PathException : Exception
+    public class PurityException : Exception
     {
-        public PathException(string message)
+        public PurityException(string message)
         : base(message) { }
     }
 }

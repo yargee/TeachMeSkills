@@ -20,7 +20,7 @@ namespace WarhouseView.Middlewares
                 if (_pattern.MatchFound(context.Request.Path))
                 {
                     context.Response.Redirect(_pattern.RedirectUrl);
-                    throw new PathException(_pattern.Message);
+                    throw new PurityException(_pattern.Message);
                 }
                 else
                 {

@@ -3,8 +3,8 @@
     public class PurityPattern : IPurityPattern
     {
         public string[] BadWords = { "porn", "xxx", "nudity" };
-        public string RedirectUrl = "https://www.christianity.com/";
-        public string Message = "Watching porn is a sin, but Jesus still loves you!";
+        public string RedirectUrl => "https://www.christianity.com/";
+        public string Message => "Watching porn is a sin, but Jesus still loves you!";
 
         public bool MatchFound(string path)
         {
