@@ -1,9 +1,10 @@
+using WarhouseView.Middlewares;
 using WarhouseView.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<IProductService, ProductService>(); 
 
 var app = builder.Build();
 
@@ -13,6 +14,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+app.UseMiddleware<PurityMiddleware>(new PurityPattern());
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
