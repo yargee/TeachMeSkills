@@ -10,7 +10,7 @@ namespace ProductInventoryProject
         public void Initialize()
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile(@"F:\TeachMeSkills\Homewrk_7(Product Inventory Project)\Product Inventory Project\appsettings.json")
+                .AddJsonFile(@"F:\TeachMeSkills\Homework_14(Async)\ProductInventoryProject\appsettings.json")
                 .Build();
 
             IConfiguration outputconfig = configuration.GetSection("AppSettings");

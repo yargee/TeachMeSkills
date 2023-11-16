@@ -1,5 +1,4 @@
 ﻿using ProductInventoryProject;
-using Microsoft.Extensions.Configuration;
 using ProductInventoryProject.Products;
 
 
@@ -15,7 +14,9 @@ while (true)
     stock.SelectProduct(out Product product, out int quantity);
 
     var purchase = new StockHandler();
-    purchase.TakeFromStock(product, quantity);
+    await purchase.TakeFromStockAsync(product, quantity);
+
+    Console.WriteLine("AAA");
 
     var inventory = new Inventory();
     var result = inventory.GetInventoryAsString();
