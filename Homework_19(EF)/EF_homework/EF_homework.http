@@ -1,0 +1,6 @@
+@EF_homework_HostAddress = http://localhost:5109
+
+GET {{EF_homework_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
