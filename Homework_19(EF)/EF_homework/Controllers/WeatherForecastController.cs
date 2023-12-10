@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EF_homework.Controllers
+namespace EF_Homework.Controllers
 {
     [ApiController]
     [Route("[controller]")]

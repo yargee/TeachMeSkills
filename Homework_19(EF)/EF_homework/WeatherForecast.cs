@@ -1,4 +1,4 @@
-namespace EF_homework
+namespace EF_Homework
 {
     public class WeatherForecast
     {
